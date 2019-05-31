@@ -3,13 +3,14 @@ defmodule SwarmPlayground.Application do
   # for more information on OTP Applications
   @moduledoc false
 
-o
 
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: SwarmPlayground.Worker.start_link(arg)
       # {SwarmPlayground.Worker, arg}
+      SwarmPlayground.Worker.Supervisor,
+      {SwarmPlayground.Worker, [name: :dave, count: 5]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
